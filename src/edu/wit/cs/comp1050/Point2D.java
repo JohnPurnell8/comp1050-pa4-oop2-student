@@ -1,7 +1,15 @@
 package edu.wit.cs.comp1050;
 
-//TODO: document this class
+/**
+ * Point2D class for PA4b
+ * 
+ * @author norrisb1
+ *
+ */
 public class Point2D {
+    
+    double x;
+    double y;
 	
 	/**
 	 * Constructor to initialize coordinates
@@ -10,6 +18,9 @@ public class Point2D {
 	 * @param y y value
 	 */
 	public Point2D(double x, double y) {
+	    this.x = x;
+	    this.y = y;
+	    
 		// replace with your code
 	}
 	
@@ -19,7 +30,7 @@ public class Point2D {
 	 * @return x coordinate
 	 */
 	public double getX() {
-		return 0; // replace with your code
+		return this.x; // replace with your code
 	}
 	
 	/**
@@ -28,7 +39,7 @@ public class Point2D {
 	 * @return y coordinate
 	 */
 	public double getY() {
-		return 0; // replace with your code
+		return this.y; // replace with your code
 	}
 	
 	/**
@@ -41,7 +52,10 @@ public class Point2D {
 	 */
 	@Override
 	public String toString() {
-		return ""; // replace with your code
+        String XString = String.format("%.3f", this.x);
+        String YString = String.format("%.3f", this.y);
+        String combined = "(" + XString + ", " + YString + ")";
+        return combined; // replace with your code
 	}
 	
 	/**
@@ -56,6 +70,13 @@ public class Point2D {
 	 */
 	@Override
 	public boolean equals(Object o) {
+	    if(o instanceof Point2D) {
+
+	        if(Shape2D.closeEnough(this.x,((Point2D) o).getX()) && Shape2D.closeEnough(this.y,((Point2D) o).getY())) {
+	            return true;
+	        }
+	    }
+
 		return false; // replace with your code
 	}
 	
@@ -69,7 +90,8 @@ public class Point2D {
 	 * @return straightline distance between p1 and p2
 	 */
 	public static double distance(Point2D p1, Point2D p2) {
-		return 0; // replace with your code
+        double straightline = Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
+        return straightline;
 	}
 	
 	/**
@@ -81,7 +103,7 @@ public class Point2D {
 	 * @return straightline distance between this point and p
 	 */
 	public double distanceTo(Point2D p) {
-		return 0; // MUST call distance above with this point
+        return distance(new Point2D(this.x, this.y), p);
 	}
 
 }
